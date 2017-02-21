@@ -8,6 +8,23 @@ import javax.persistence.Id;
 @Entity
 public class Address {
 
+	public Address(){
+		
+	}
+	
+	
+	public Address(String houseNo, String street, String county,
+			String country, String postcode) {
+		super();
+		this.houseNo = houseNo;
+		this.street = street;
+		this.county = county;
+		this.country = country;
+		this.postcode = postcode;
+	}
+
+
+
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private String id;

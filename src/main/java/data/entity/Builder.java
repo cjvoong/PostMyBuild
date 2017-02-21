@@ -7,43 +7,54 @@ import javax.persistence.GenerationType;
 @Entity
 public class Builder {
 
+	public Builder(){
+	}
+	
+	public Builder(String name, String forename, String surname, Address address) {
+		super();
+		this.name = name;
+		this.forename = forename;
+		this.surname = surname;
+		this.address = address;
+	}
+
 	@javax.persistence.Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-	private Long Id;
-	private String builderName;
-	private String builderForename;
-	private String builderSurname;
-	private Address Address;
+	private Long id;
+	private String name;
+	private String forename;
+	private String surname;
+	private Address address;
 	
 	public Long getId() {
-		return Id;
+		return id;
 	}
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
 	public String getBuilderName() {
-		return builderName;
+		return name;
 	}
 	public void setBuilderName(String builderName) {
-		this.builderName = builderName;
+		this.name = builderName;
 	}
 	public String getBuilderForename() {
-		return builderForename;
+		return forename;
 	}
 	public void setBuilderForename(String builderForename) {
-		this.builderForename = builderForename;
+		this.forename = builderForename;
 	}
 	public String getBuilderSurname() {
-		return builderSurname;
+		return surname;
 	}
 	public void setBuilderSurname(String builderSurname) {
-		this.builderSurname = builderSurname;
+		this.surname = builderSurname;
 	}
 	public Address getAddress() {
-		return Address;
+		return address;
 	}
 	public void setAddress(Address address) {
-		Address = address;
+		this.address = address;
 	}
 	
 }
