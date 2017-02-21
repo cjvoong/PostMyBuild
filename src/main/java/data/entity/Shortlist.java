@@ -1,4 +1,4 @@
-package data.entities;
+package data.entity;
 
 public class Shortlist {
 
