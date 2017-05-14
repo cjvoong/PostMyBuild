@@ -22,6 +22,7 @@ public class App {
 	@Bean
 	public CommandLineRunner demo(BuilderRepository repository) {
 		return (args) -> {
+			
 			repository.save(new Builder("ABC plasterers","John","Smith",new Address("1","street","W.Yorks","UK","LS11LS")));
 			repository.save(new Builder("JJ's Joinery","Joe","Blogs",new Address("2","street","W.Yorks","UK","LS22LS")));	
 		};

@@ -2,6 +2,7 @@ package postmybuild.data.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,7 @@ public class Builder {
 	public Builder(){
 	}
 	
-	public Builder(String name, String forename, String surname, List<Address> address) {
+	public Builder(String name, String forename, String surname, Address address) {
 		super();
 		this.name = name;
 		this.forename = forename;
@@ -31,9 +32,10 @@ public class Builder {
 	private String forename;
 	private String surname;
 	
-	@OneToMany
+	
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="addressId")
-	private List<Address> address;
+	private Address address;
 	
 	public Long getId() {
 		return id;
@@ -59,10 +61,10 @@ public class Builder {
 	public void setBuilderSurname(String builderSurname) {
 		this.surname = builderSurname;
 	}
-	public List<Address> getAddress() {
+	public Address getAddress() {
 		return address;
 	}
-	public void setAddress(List<Address> address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 	
