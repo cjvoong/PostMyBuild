@@ -1,4 +1,4 @@
-package application;
+package postmybuild;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,9 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import data.entity.Address;
-import data.entity.Builder;
-import data.repository.BuilderRepository;
+import postmybuild.data.entity.Address;
+import postmybuild.data.entity.Builder;
+import postmybuild.data.repository.BuilderRepository;
 
 @SpringBootApplication
 public class App {

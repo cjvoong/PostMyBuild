@@ -1,8 +1,14 @@
-package data.entity;
+package postmybuild.data.entity;
+
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Builder {
@@ -10,7 +16,7 @@ public class Builder {
 	public Builder(){
 	}
 	
-	public Builder(String name, String forename, String surname, Address address) {
+	public Builder(String name, String forename, String surname, List<Address> address) {
 		super();
 		this.name = name;
 		this.forename = forename;
@@ -24,7 +30,10 @@ public class Builder {
 	private String name;
 	private String forename;
 	private String surname;
-	private Address address;
+	
+	@OneToMany
+	@JoinColumn(name="addressId")
+	private List<Address> address;
 	
 	public Long getId() {
 		return id;
@@ -50,10 +59,10 @@ public class Builder {
 	public void setBuilderSurname(String builderSurname) {
 		this.surname = builderSurname;
 	}
-	public Address getAddress() {
+	public List<Address> getAddress() {
 		return address;
 	}
-	public void setAddress(Address address) {
+	public void setAddress(List<Address> address) {
 		this.address = address;
 	}
 	

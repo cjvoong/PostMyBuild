@@ -1,4 +1,4 @@
-package data.entity;
+package postmybuild.data.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,17 +27,19 @@ public class Address {
 
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-	private String id;
+	private Long addressID;
+	
 	private String houseNo;
 	private String street;
 	private String county;
 	private String country;
+	
 	private String postcode;
-	public String getId() {
-		return id;
+	public Long getId() {
+		return addressID;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setId(Long id) {
+		this.addressID = id;
 	}
 	public String getHouseNo() {
 		return houseNo;
