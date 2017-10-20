@@ -4,6 +4,25 @@
   <artifactId>PostMyBuild</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
+	<repositories>
+		<repository>
+			<id>eviware</id>
+			<url>http://www.eviware.com/repository/maven2/</url>
+		</repository>
+		<repository>
+			<id>maven central</id>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
+		<repository>
+			<id>jenkins-releases</id>
+			<url>http://repo.jenkins-ci.org/releases/</url>
+		</repository>
+		<repository>
+			<id>maven-central-2</id>
+			<url>http://repo.maven.apache.org/maven2</url>
+		</repository>				
+	</repositories>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -16,11 +35,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
@@ -41,6 +55,19 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        
+        <!--  testng -->
+        <dependency>
+        	<groupId>org.testng</groupId>
+        	<artifactId>testng</artifactId>
+        	<version>6.11</version>
+        </dependency>
+        
     </dependencies>
 
     <properties>
