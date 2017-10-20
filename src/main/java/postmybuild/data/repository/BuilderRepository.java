@@ -4,8 +4,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import postmybuild.data.entity.Builder;
 
-public interface BuilderRepository extends CrudRepository<Builder,Long> {
+public interface BuilderRepository extends CrudRepository<Builder, Long> {
 
-	Builder findById(String id);
-	
+	Builder findById(Long builderId);
+
 }
