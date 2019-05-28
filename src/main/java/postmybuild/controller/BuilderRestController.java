@@ -11,38 +11,38 @@ import postmybuild.data.entity.Address;
 import postmybuild.data.entity.Builder;
 import postmybuild.data.repository.AddressRepository;
 import postmybuild.data.repository.BuilderRepository;
+import postmybuild.service.AddressService;
+import postmybuild.service.BuilderService;
 
 @RestController
 public class BuilderRestController {
 
+
 	@Autowired
-	BuilderRepository bldrRepo;
+	BuilderService builderService;
+
 	@Autowired
-	AddressRepository addrRepo;
+	AddressService addressService;
 
 	@RequestMapping(value = "/builder/{builderId}", method = RequestMethod.GET)
 	public Builder getBuilderById(@PathVariable Long builderId) {
-		return bldrRepo.findById(builderId);
+		return builderService.getBuilder(builderId);
 	}
 
 	@RequestMapping(value = "/builder/add", method = RequestMethod.POST)
 	public Builder createBuilder(@RequestBody Builder input) {
-		addrRepo.save(input.getAddresses());
-		bldrRepo.save(input);
-		return bldrRepo.findById(input.getBuilderId());
+		return  builderService.createBuilder(input);
 	}
 
 	@RequestMapping(value = "/builder/{builderId}", method = RequestMethod.DELETE)
-	public Builder deleteBuilderById(@PathVariable Long builderId) {
-		Builder tempBuilder = bldrRepo.findById(builderId);
-		bldrRepo.delete(tempBuilder);
-		return tempBuilder;
+	public void deleteBuilderById(@PathVariable Long builderId) {
+		builderService.deleteBuilder(builderId);
 	}
 
 	@RequestMapping(value = "/address/add", method = RequestMethod.POST)
 	public Address createAddress(@RequestBody Address input) {
-		addrRepo.save(input);
-		return addrRepo.findById(input.getAddressId());
+		addressService.createAddress(input);
+		return addressService.getAddress(input.getAddressId());
 	}
 
 }

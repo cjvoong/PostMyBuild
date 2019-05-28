@@ -6,6 +6,6 @@ import postmybuild.data.entity.Builder;
 
 public interface BuilderRepository extends CrudRepository<Builder, Long> {
 
-	Builder findById(Long builderId);
+	//Builder findById(Long builderId);
 
 }

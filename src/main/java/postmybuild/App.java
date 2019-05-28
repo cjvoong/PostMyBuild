@@ -40,8 +40,8 @@ public class App {
 			List<Address> b2Addresses = new ArrayList<Address>();
 			b2Addresses.add(new Address("2", "street", "W.Yorks", "UK", "LS22LS"));
 
-			addressRepo.save(b1Addresses);
-			addressRepo.save(b2Addresses);
+			addressRepo.saveAll(b1Addresses);
+			addressRepo.saveAll(b2Addresses);
 
 			builderRepo.save(new Builder("ABC plasterers", "John", "Smith", b1Addresses));
 			builderRepo.save(new Builder("JJ's Joinery", "Joe", "Blogs", b2Addresses));

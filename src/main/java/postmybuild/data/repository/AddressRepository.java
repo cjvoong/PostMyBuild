@@ -6,6 +6,6 @@ import postmybuild.data.entity.Address;
 
 public interface AddressRepository extends CrudRepository<Address, Long> {
 
-	Address findById(Long addressId);
+	//Address findById(Long addressId);
 
 }
