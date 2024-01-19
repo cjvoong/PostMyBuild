@@ -12,9 +12,8 @@
     <properties>
         <java.version>1.8</java.version>
         <mysql.connector.version>8.3.0</mysql.connector.version>
-        <servlet.api.version>3.1.0</servlet.api.version>
-        <testng.version>7.4.0</testng.version>
-        <fileupload.version>1.4</fileupload.version>
+        <testng.version>7.5.1</testng.version>
+        <fileupload.version>1.5</fileupload.version>
     </properties>
 
     <parent>
@@ -68,7 +67,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
+            <version>[7.5.1,)</version>
         </dependency>
 
         <!-- Spring Context, AOP, WebMVC, Web -->
@@ -95,7 +94,7 @@
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>${fileupload.version}</version>
+            <version>1.5</version>
         </dependency>
     </dependencies>
 
