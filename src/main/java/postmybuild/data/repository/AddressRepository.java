@@ -4,8 +4,10 @@ import org.springframework.data.repository.CrudRepository;
 
 import postmybuild.data.entity.Address;
 
+import java.util.Optional;
+
 public interface AddressRepository extends CrudRepository<Address, Long> {
 
-	//Address findById(Long addressId);
+	Optional<Address> findById(Long addressId);
 
 }

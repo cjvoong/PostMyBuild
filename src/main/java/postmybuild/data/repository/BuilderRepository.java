@@ -4,8 +4,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import postmybuild.data.entity.Builder;
 
+import java.util.Optional;
+
 public interface BuilderRepository extends CrudRepository<Builder, Long> {
-
-	//Builder findById(Long builderId);
-
+	Optional<Builder> findById(Long builderId);
 }

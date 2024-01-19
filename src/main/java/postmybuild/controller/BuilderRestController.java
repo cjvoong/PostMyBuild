@@ -1,23 +1,15 @@
 package postmybuild.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import postmybuild.data.entity.Address;
 import postmybuild.data.entity.Builder;
-import postmybuild.data.repository.AddressRepository;
-import postmybuild.data.repository.BuilderRepository;
 import postmybuild.service.AddressService;
 import postmybuild.service.BuilderService;
 
 @RestController
 public class BuilderRestController {
-
-
 	@Autowired
 	BuilderService builderService;
 
@@ -44,5 +36,4 @@ public class BuilderRestController {
 		addressService.createAddress(input);
 		return addressService.getAddress(input.getAddressId());
 	}
-
 }
