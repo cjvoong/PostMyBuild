@@ -8,6 +8,8 @@ import postmybuild.data.entity.Builder;
 import postmybuild.service.AddressService;
 import postmybuild.service.BuilderService;
 
+import javax.transaction.Transactional;
+
 @RestController
 public class BuilderRestController {
 	@Autowired
@@ -21,9 +23,17 @@ public class BuilderRestController {
 		return builderService.getBuilder(builderId);
 	}
 
-	@RequestMapping(value = "/builder/add", method = RequestMethod.POST)
+	@Transactional
+	@RequestMapping(value = "/builder/addBuilderWithAddress", method = RequestMethod.POST)
 	public Builder createBuilder(@RequestBody Builder input) {
-		return  builderService.createBuilder(input);
+		return  builderService.createBuilderWithAddress(input);
+	}
+
+	@Transactional
+	@RequestMapping(value="/builder/{builderId}", method=RequestMethod.POST)
+	public Builder updateBuilder(@RequestBody Builder updatedBuilder,@PathVariable Long builderId){
+		Builder builder = builderService.updateBuilder(updatedBuilder,builderId);
+		return builder;
 	}
 
 	@RequestMapping(value = "/builder/{builderId}", method = RequestMethod.DELETE)
@@ -31,9 +41,15 @@ public class BuilderRestController {
 		builderService.deleteBuilder(builderId);
 	}
 
-	@RequestMapping(value = "/address/add", method = RequestMethod.POST)
-	public Address createAddress(@RequestBody Address input) {
-		addressService.createAddress(input);
+	@RequestMapping(value = "/builder/{builderId}/address/{addressId}", method=RequestMethod.DELETE)
+	public void deleteAddressFromBuilder(@PathVariable Long builderId, @PathVariable Long addressId){
+		builderService.removeAddressFromBuilder(builderId,addressId);
+	}
+
+	@Transactional
+	@RequestMapping(value = "/builder/{builderId}/addAddressToBuilder", method = RequestMethod.POST)
+	public Address addAddressToBuilder(@RequestBody Address input, @PathVariable Long builderId) {
+		addressService.saveAddressToBuilder(input,builderId);
 		return addressService.getAddress(input.getAddressId());
 	}
 }
