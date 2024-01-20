@@ -1,0 +1,70 @@
+## Create a builder with address
+
+curl -X POST --header 'content-type: application/json' \
+--data '{
+"builderName": "XYZ Construction", 
+"builderForename": "John",                                                                                   
+"builderSurname": "Smith",  
+"addresses": [
+    {
+      "houseNo": "456",
+      "street": "Maple Avenue",
+      "county": "Sample County",
+      "country": "Sample Country",
+      "postcode": "67890"
+    }
+]
+}' http://localhost:8080/builder/createBuilder
+
+fetch build with id 1
+
+curl http://localhost:8080/builder/1
+
+## Add address to existing builder with builder id 1
+
+curl -X POST --header 'content-type: application/json' \
+--data '{
+      "houseNo": "2nd",
+      "street": "added Avenue",
+      "county": "Sample County",
+      "country": "Sample Country",
+      "postcode": "67890"
+    }' http://localhost:8080/builder/1/addAddress
+
+## Update builder or address
+
+curl -X PUT --header 'content-type: application/json' \
+--data '{
+"builderName": "Updated name", 
+"builderForename": "John",                                                                                   
+"builderSurname": "Smith",  
+"addresses": [
+    {
+      "houseNo": "456",
+      "street": "Updated street",
+      "county": "Sample County",
+      "country": "Sample Country",
+      "postcode": "67890"
+    }
+]
+}' http://localhost:8080/builder/1/updateBuilder
+
+## delete address from builder
+
+curl -X DELETE http://localhost:8080/builder/1/address/4
+
+## delete builder
+
+curl -X DELETE http://localhost:8080/builder/1
+
+## get all builders 
+
+curl http://localhost:8080/builder
+
+## get all addresses for a builder
+
+curl http://localhost:8080/builder/1/addresses
+
+## get all addresses
+
+curl http://localhost:8080/addresses
