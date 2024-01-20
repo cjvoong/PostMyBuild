@@ -1,12 +1,8 @@
 package postmybuild.data.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
 
 @Entity
 public class Address {
@@ -25,27 +21,29 @@ public class Address {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "address_id")
 	private Long id;
 
-	@Column(name = "house_no")
 	private String houseNo;
 
-	@Column(name = "street")
 	private String street;
 
-	@Column(name = "county")
 	private String county;
 
-	@Column(name = "country")
 	private String country;
 
-	@Column(name = "postcode")
 	private String postcode;
 
 	@ManyToOne
-	@JoinColumn(name = "builder_id")
+	@JsonBackReference
 	private Builder builder;
+
+	public Builder getBuilder(){
+		return builder;
+	}
+
+	public void setBuilder(Builder builder) {
+		this.builder = builder;
+	}
 
 	public Long getAddressId() {
 		return id;

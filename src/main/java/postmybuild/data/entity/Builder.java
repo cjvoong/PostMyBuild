@@ -1,14 +1,9 @@
 package postmybuild.data.entity;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Builder {
@@ -26,20 +21,16 @@ public class Builder {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "builder_id")
 	private Long id;
 
-	@Column(name = "name")
 	private String name;
 
-	@Column(name = "forename")
 	private String forename;
 
-	@Column(name = "surname")
 	private String surname;
 
-	@OneToMany
-	@JoinColumn(name = "builder_id")
+	@OneToMany(mappedBy = "builder", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private List<Address> addresses;
 
 	public Long getBuilderId() {
@@ -48,6 +39,11 @@ public class Builder {
 
 	public void setBuilderId(Long builderId) {
 		this.id = builderId;
+	}
+
+	public void addAddresses(Address address){
+		this.addresses.add(address);
+		address.setBuilder(this);
 	}
 
 	public String getBuilderName() {
@@ -78,7 +74,7 @@ public class Builder {
 		return addresses;
 	}
 
-	public void setAddresses(List<Address> addresses) {
+	public void setAddresses(List<Address> addresses){
 		this.addresses = addresses;
 	}
 
