@@ -1,8 +1,8 @@
-package postmybuild.data.repository;
+package com.voongc.postmybuild.data.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import postmybuild.data.entity.Address;
+import com.voongc.postmybuild.data.entity.Address;
 
 import java.util.Optional;
 

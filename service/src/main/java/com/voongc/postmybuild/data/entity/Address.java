@@ -1,4 +1,4 @@
-package postmybuild.data.entity;
+package com.voongc.postmybuild.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
