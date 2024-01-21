@@ -24,4 +24,3 @@ Build on MVC pattern and uses a mysql backend, atm for development that has been
 
 Need to sort how service to run the Jar
 Automated deployment
-test
