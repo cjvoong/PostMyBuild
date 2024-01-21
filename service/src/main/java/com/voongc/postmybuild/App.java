@@ -1,4 +1,4 @@
-package postmybuild;
+package com.voongc.postmybuild;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
