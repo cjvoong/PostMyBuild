@@ -28,7 +28,7 @@ jobs:
 
     steps:
       - name: Copy JAR to Deployment Server
-        uses: appleboy/scp-action@v2
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USERNAME }}
