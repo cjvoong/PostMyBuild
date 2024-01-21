@@ -20,3 +20,8 @@ Build on MVC pattern and uses a mysql backend, atm for development that has been
     
 * Test questions
     * How to effective test each of the layers
+
+
+Need to sort out logging
+Need to sort how service to run the Jar
+Automated deployment

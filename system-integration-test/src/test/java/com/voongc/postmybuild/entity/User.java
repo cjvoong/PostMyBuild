@@ -1,4 +1,4 @@
-package com.voongc.postmybuild.data.entity;
+package com.voongc.postmybuild.entity;
 
 import lombok.Data;
 

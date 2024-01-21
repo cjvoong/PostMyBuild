@@ -31,7 +31,7 @@ public class BuilderService {
     @Transactional
     public Builder createBuilderWithAddress(Builder builder){
         builderRepository.save(builder);
-        return builderRepository.findById(builder.getBuilderId()).orElseThrow(() -> new EntityNotFoundException());
+        return builderRepository.findById(builder.getId()).orElseThrow(() -> new EntityNotFoundException());
     }
 
     @Transactional
@@ -39,9 +39,9 @@ public class BuilderService {
         Builder builder = builderRepository.findById(builderId).orElseThrow(() -> new EntityNotFoundException());
 
         // Update builder details
-        builder.setBuilderForename(updatedBuilder.getBuilderForename());
-        builder.setBuilderSurname(updatedBuilder.getBuilderSurname());
-        builder.setBuilderName(updatedBuilder.getBuilderName());
+        builder.setForename(updatedBuilder.getForename());
+        builder.setSurname(updatedBuilder.getSurname());
+        builder.setName(updatedBuilder.getName());
 
         // Update addresses individually or replace them entirely based on your requirement
         builder.getAddresses().clear();  // Clear existing addresses
