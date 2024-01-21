@@ -1,0 +1,40 @@
+name: Java CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+
+      - name: Build with Maven
+        run: mvn clean install
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Copy JAR to Deployment Server
+        uses: appleboy/scp-action@v2
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USERNAME }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          source: "target/service-0.0.1-SNAPSHOT.jar"
+          target: "/opt/apps/postmybuild/service-0.0.1-SNAPSHOT.jar"
+
+      - name: Restart Service on Deployment Server
+        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'sudo systemctl restart postmybuild.service'
