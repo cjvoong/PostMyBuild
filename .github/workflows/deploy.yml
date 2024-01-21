@@ -33,7 +33,7 @@ jobs:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USERNAME }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
-          source: "service/target/service-0.0.1-SNAPSHOT.jar"
+          source: "postmybuild/service/target/service-0.0.1-SNAPSHOT.jar"
           target: "/opt/apps/postmybuild/service-0.0.1-SNAPSHOT.jar"
 
       - name: Restart Service on Deployment Server
