@@ -19,8 +19,8 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
 
-      - name: Build with Maven
-        run: mvn clean install
+      - name: Build Service with Maven
+        run: mvn -f service/pom.xml clean install
 
   deploy:
     runs-on: ubuntu-latest
@@ -33,7 +33,7 @@ jobs:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USERNAME }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
-          source: "target/service-0.0.1-SNAPSHOT.jar"
+          source: "service/target/service-0.0.1-SNAPSHOT.jar"
           target: "/opt/apps/postmybuild/service-0.0.1-SNAPSHOT.jar"
 
       - name: Restart Service on Deployment Server
