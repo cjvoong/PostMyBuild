@@ -23,7 +23,7 @@ jobs:
         run: mvn -f service/pom.xml clean install
 
       - name: Copy JAR to Deployment Server
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/scp-action@v0.1.3
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USERNAME }}
@@ -32,10 +32,10 @@ jobs:
           target: "/tmp"
 
       - name: Move jar into the right folder
-        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'sudo mv /tmp/service/target/service-0.0.1-SNAPSHOT.jar /opt/app/postmybuild/service-0.0.1-SNAPSHOT.jar'
+        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'sudo mv /tmp/service/target/service-0.0.1-SNAPSHOT.jar /opt/apps/postmybuild/service-0.0.1-SNAPSHOT.jar'
 
       - name: Set permissions
-        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'sudo chown -R ubuntu:ubuntu /opt/app/postmybuild/'
+        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'sudo chown -R ubuntu:ubuntu /opt/apps/postmybuild/'
 
       - name: Restart Service on Deployment Server
         run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'sudo systemctl restart postmybuild.service'
