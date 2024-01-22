@@ -22,16 +22,14 @@ public class AddressControllerTest {
     static Long addressId = 0L;
     @BeforeAll
     public static void beforeAll(){
-//        // Check if the environment variable is set
-//        String baseURIHost = System.getenv("BASE_URI_HOST");
-//        // If the environment variable is not set or is empty, use the default from the properties file
-//        if (baseURIHost == null || baseURIHost.isEmpty()) {
-//            RestAssured.baseURI = "http://localhost:8080";
-//        } else {
-//            RestAssured.baseURI = "http://" + baseURIHost + ":8080";
-//        }
-
-        RestAssured.baseURI = "http://138.68.180.193:8080";
+        // Check if the environment variable is set
+        String baseURIHost = System.getenv("BASE_URI_HOST");
+        // If the environment variable is not set or is empty, use the default from the properties file
+        if (baseURIHost == null || baseURIHost.isEmpty()) {
+            RestAssured.baseURI = "http://localhost:8080";
+        } else {
+            RestAssured.baseURI = "http://" + baseURIHost + ":8080";
+        }
 
         Address address = new Address("1", "Data St", "West Yorks", "UK", "YO1 3AB");
         // Create a sample Builder object

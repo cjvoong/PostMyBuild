@@ -58,3 +58,5 @@ jobs:
 
       - name: Run REST Assured Tests
         run: mvn -q -B -f acceptance-test/pom.xml verify
+        env:
+          BASE_URI_HOST: ${{ secrets.DEPLOY_HOST }}
