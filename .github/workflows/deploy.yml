@@ -31,11 +31,13 @@ jobs:
           source: "service/target/service-0.0.1-SNAPSHOT.jar"
           target: "/tmp"
 
-      - name: Move jar into the right folder
-        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'mv /tmp/service/target/service-0.0.1-SNAPSHOT.jar /opt/apps/postmybuild/service-0.0.1-SNAPSHOT.jar'
-
-      - name: Set permissions
-        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'chown -R ubuntu:ubuntu /opt/apps/postmybuild/'
-
-      - name: Restart Service on Deployment Server
-        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'systemctl restart postmybuild.service'
+      - name: move file into the right place
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USERNAME }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            sudo mv /tmp/service/target/service-0.0.1-SNAPSHOT.jar /opt/apps/postmybuild/service-0.0.1-SNAPSHOT.jar
+            sudo chown -R ubuntu:ubuntu /opt/apps/postmybuild/
+            sudo systemctl restart postmybuild.service
