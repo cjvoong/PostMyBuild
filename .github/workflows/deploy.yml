@@ -32,10 +32,10 @@ jobs:
           target: "/tmp"
 
       - name: Move jar into the right folder
-        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'sudo mv /tmp/service/target/service-0.0.1-SNAPSHOT.jar /opt/apps/postmybuild/service-0.0.1-SNAPSHOT.jar'
+        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'mv /tmp/service/target/service-0.0.1-SNAPSHOT.jar /opt/apps/postmybuild/service-0.0.1-SNAPSHOT.jar'
 
       - name: Set permissions
-        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'sudo chown -R ubuntu:ubuntu /opt/apps/postmybuild/'
+        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'chown -R ubuntu:ubuntu /opt/apps/postmybuild/'
 
       - name: Restart Service on Deployment Server
-        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'sudo systemctl restart postmybuild.service'
+        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'systemctl restart postmybuild.service'
