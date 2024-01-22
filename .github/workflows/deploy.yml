@@ -57,4 +57,4 @@ jobs:
           java-version: '17'
 
       - name: Run REST Assured Tests
-        run: mvn -f acceptance-test/pom.xml verify
+        run: mvn -q -B -f acceptance-test/pom.xml verify
