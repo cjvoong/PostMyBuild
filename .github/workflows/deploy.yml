@@ -41,3 +41,22 @@ jobs:
             sudo mv /tmp/service/target/service-0.0.1-SNAPSHOT.jar /opt/app/postmybuild/service-0.0.1-SNAPSHOT.jar
             sudo chown -R ubuntu:ubuntu /opt/app/postmybuild/
             sudo systemctl restart postmybuild.service
+
+  acceptance-test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+
+      - name: Run REST Assured Tests
+        run: mvn -f acceptance-test/pom.xml verify
+        env:
+          BASE_URI_HOST: ${{ secrets.DEPLOY_HOST }}

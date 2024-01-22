@@ -2,7 +2,6 @@ package com.voongc.postmybuild.restassured;
 
 import com.voongc.postmybuild.entity.Address;
 import com.voongc.postmybuild.entity.Builder;
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Assertions;
@@ -22,7 +21,13 @@ public class AddressControllerTest {
     static Long addressId = 0L;
     @BeforeAll
     public static void beforeAll(){
-        RestAssured.baseURI ="http://localhost:8080";
+        // Check if the environment variable is set
+        String baseURI = System.getenv("BASE_URI");
+        // If the environment variable is not set or is empty, use the default from the properties file
+        if (baseURI == null || baseURI.isEmpty()) {
+            baseURI = "http://localhost:8080";
+        }
+
         Address address = new Address("1", "Data St", "West Yorks", "UK", "YO1 3AB");
         // Create a sample Builder object
         Builder builder = new Builder("John", "Doe", "Smith", List.of(address));

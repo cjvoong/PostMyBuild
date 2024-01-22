@@ -20,3 +20,11 @@ Build on MVC pattern and uses a mysql backend, atm for development that has been
     
 * Test questions
     * How to effective test each of the layers
+
+* Use cases
+  * A User registers
+  * A Builder registers
+  * A User posts a Job
+  * A Builder creates a Quote for the Job
+  * A User adds a Quote to their shortlist
+  * A User selects a Quote for their Job

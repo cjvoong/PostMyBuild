@@ -12,7 +12,7 @@
 
     <modules>
         <module>service</module>
-        <module>system-integration-test</module>
+        <module>acceptance-test</module>
     </modules>
 
 </project>
