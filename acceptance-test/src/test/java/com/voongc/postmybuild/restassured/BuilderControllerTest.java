@@ -21,12 +21,11 @@ public class BuilderControllerTest {
     public static void beforeAll(){
         // Check if the environment variable is set
         String baseURIHost = System.getenv("BASE_URI_HOST");
-        String baseURI = "";
         // If the environment variable is not set or is empty, use the default from the properties file
         if (baseURIHost == null || baseURIHost.isEmpty()) {
-            baseURI = "http://localhost:8080";
+            RestAssured.baseURI = "http://localhost:8080";
         } else {
-            baseURI = "http://" + baseURIHost + ":8080";
+            RestAssured.baseURI = "http://" + baseURIHost + ":8080";
         }
 
         Address address = new Address("1", "Data St", "West Yorks", "UK", "YO1 3AB");

@@ -32,4 +32,9 @@ public class Address {
 	@ManyToOne
 	@JsonBackReference
 	private Builder builder;
+
+//	@ManyToOne
+//	@JsonBackReference
+//	private User user;
+
 }
