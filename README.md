@@ -16,7 +16,10 @@ Log location set to /var/log/postmybuild.log
 
 ## running
 
-Github action that automatically builds, tests (not restassured at this stage), and deploys to a server that runs the jar, no apache
+Github action that automatically builds, unit tests, and deploys to a server that runs the jar
+Another job then runs that does E2E acceptance testing using RestAssured.
+
+
 
 # Locally
 
