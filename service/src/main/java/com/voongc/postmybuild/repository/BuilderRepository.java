@@ -1,4 +1,4 @@
-package com.voongc.postmybuild.data.repository;
+package com.voongc.postmybuild.repository;
 
 import org.springframework.data.repository.CrudRepository;
 

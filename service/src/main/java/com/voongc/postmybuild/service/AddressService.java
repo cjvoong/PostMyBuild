@@ -1,11 +1,11 @@
 package com.voongc.postmybuild.service;
 
 import com.voongc.postmybuild.data.entity.Address;
-import com.voongc.postmybuild.data.repository.AddressRepository;
+import com.voongc.postmybuild.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.voongc.postmybuild.data.entity.Builder;
-import com.voongc.postmybuild.data.repository.BuilderRepository;
+import com.voongc.postmybuild.repository.BuilderRepository;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
