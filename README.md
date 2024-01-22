@@ -6,21 +6,20 @@ You can also add addresses and builders.
 
 Build on MVC pattern and uses a mysql backend, atm for development that has been added to a Docker compose file as an image, future considerations should include;
 
-* How should the app be deployed?
-    * AWS / Azure
-    * Kubernetes
-    
-* How should the app be built?
-    * Docker image
-    * Code artifact or JAR
-    
-* Code design questions
-    * Should we use so much spring?
-    * Is it easy enough to swap out datastore? ALA repository pattern.
-    
-* Test questions
-    * How to effective test each of the layers
+# Deployment
 
+## pre-reqs
 
-Need to sort how service to run the Jar
-Automated deployment
+Server with java 17 installed
+Service setup for running the jar with a logback.xml and application.config file
+Log location set to /var/log/postmybuild.log
+
+## running
+
+Github action that automatically builds, tests (not restassured at this stage), and deploys to a server that runs the jar, no apache
+
+# Locally
+
+Run in intellij or
+
+`java -jar service-0.0.1-SNAPSHOT.jar`
