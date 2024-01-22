@@ -31,6 +31,8 @@ public class AddressControllerTest {
             RestAssured.baseURI = "http://" + baseURIHost + ":8080";
         }
 
+        System.out.println("BASE URI: " +RestAssured.baseURI);
+
         Address address = new Address("1", "Data St", "West Yorks", "UK", "YO1 3AB");
         // Create a sample Builder object
         Builder builder = new Builder("John", "Doe", "Smith", List.of(address));

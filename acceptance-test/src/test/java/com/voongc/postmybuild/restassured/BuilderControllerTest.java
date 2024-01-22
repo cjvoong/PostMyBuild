@@ -28,6 +28,8 @@ public class BuilderControllerTest {
             RestAssured.baseURI = "http://" + baseURIHost + ":8080";
         }
 
+        System.out.println("BASE URI: " +RestAssured.baseURI);
+
         Address address = new Address("1", "Data St", "West Yorks", "UK", "YO1 3AB");
         // Create a sample Builder object
         Builder builder = new Builder("Before Builders Ltd", "John", "Smith", List.of(address));
@@ -50,7 +52,6 @@ public class BuilderControllerTest {
 
     @Test
     public void testCreateBuilder() {
-        RestAssured.baseURI ="http://localhost:8080";
         Address address = new Address("1", "Data St", "West Yorks", "UK", "YO1 3AB");
         // Create a sample Builder object
         Builder builder = new Builder("Builders Inc.", "Chris", "Steward", List.of(address));
