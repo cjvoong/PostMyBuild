@@ -29,7 +29,13 @@ jobs:
           username: ${{ secrets.DEPLOY_USERNAME }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           source: "service/target/service-0.0.1-SNAPSHOT.jar"
-          target: "/opt/apps/postmybuild/"
+          target: "/tmp"
+
+      - name: Move jar into the right folder
+        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'sudo mv /tmp/service/target/service-0.0.1-SNAPSHOT.jar /opt/app/postmybuild/service-0.0.1-SNAPSHOT.jar'
+
+      - name: Set permissions
+        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'sudo chown -R ubuntu:ubuntu /opt/app/postmybuild/'
 
       - name: Restart Service on Deployment Server
         run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.DEPLOY_SSH_KEY }} ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} 'sudo systemctl restart postmybuild.service'
