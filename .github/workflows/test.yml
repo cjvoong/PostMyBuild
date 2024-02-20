@@ -39,7 +39,13 @@ jobs:
 
       - name: Check Server Status
         id: server-status
-        run: sleep 30s  # Adjust this wait time as needed
+        run: sleep 30s
 
       - name: Run REST Assured Tests
         run: mvn -q -B -f acceptance-test/pom.xml verify
+
+      - name: Archive Test Reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-reports
+          path: acceptance-test/target/surefire-reports
