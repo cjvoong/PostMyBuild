@@ -42,10 +42,10 @@ jobs:
         run: sleep 30s
 
       - name: Run REST Assured Tests
-        run: mvn -q -B -f acceptance-test/pom.xml verify
+        run: mvn -q -B -f acceptance-test/pom.xml verify site
 
       - name: Archive Test Reports
         uses: actions/upload-artifact@v2
         with:
           name: test-reports
-          path: acceptance-test/target/surefire-reports
+          path: acceptance-test/target/site

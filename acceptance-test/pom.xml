@@ -1,7 +1,7 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.voongc.postmybuild</groupId>
-    <artifactId>system-integration-tests</artifactId>
+    <artifactId>acceptance-tests</artifactId>
     <version>1.0.0</version>
 
     <properties>
@@ -62,29 +62,18 @@
     </dependencies>
 
     <build>
+
         <plugins>
-            <!-- Maven Surefire Plugin for unit tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version>
-                <configuration>
-                    <includes>
-                        <include>**/*Test.java</include>
-                    </includes>
-                    <!-- Generate XML report -->
-                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
-                    <systemPropertyVariables>
-                        <java.util.logging.manager>org.apache.logging.log4j.jul.LogManager</java.util.logging.manager>
-                    </systemPropertyVariables>
-                </configuration>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>4.0.0-M13</version>
             </plugin>
-
             <!-- Maven Failsafe Plugin for integration tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M5</version>
+                <version>3.2.5</version>
                 <configuration>
                     <includes>
                         <include>**/*IT.java</include>
@@ -92,9 +81,6 @@
                     </includes>
                     <!-- Generate XML report -->
                     <reportsDirectory>${project.build.directory}/failsafe-reports</reportsDirectory>
-                    <systemPropertyVariables>
-                        <java.util.logging.manager>org.apache.logging.log4j.jul.LogManager</java.util.logging.manager>
-                    </systemPropertyVariables>
                 </configuration>
                 <executions>
                     <execution>
@@ -108,5 +94,14 @@
             </plugin>
         </plugins>
     </build>
-
+    <reporting>
+        <plugins>
+            <!-- Maven Failsafe Report Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
